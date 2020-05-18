@@ -169,8 +169,8 @@ body {
   display: none;
   position: absolute;
   top: 36px;
-  left: -166px;
-  width: 350px;
+  left: -91px;
+  width: 200px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -192,8 +192,8 @@ body {
   display: none;
   position: absolute;
   top: 32px;
-  left: -45px;
-  width: 350px;
+  left: 4px;
+  width: 250px;
   background-color: #FAFAFA;
   text-align: center;
   padding: 12px;
@@ -225,10 +225,10 @@ body {
   font-size: 1.5rem;
   color: #B71C1C;
 }
-.info-subtext {
-  margin-top: 8px;
-  font-size: 0.7rem;
-}
+/*.info-subtext {*/
+/*  margin-top: 8px;*/
+/*  font-size: 0.7rem;*/
+/*}*/
 .options {
   text-align: left;
 }

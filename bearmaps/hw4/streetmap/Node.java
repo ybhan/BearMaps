@@ -1,21 +1,19 @@
 package bearmaps.hw4.streetmap;
 
+import bearmaps.proj2ab.Point;
+
 /**
  * Vertex representation for the graph.
  *
- * @author Kevin Lowe
+ * @author Kevin Lowe, Yuanbo Han
  */
-public class Node {
+public class Node extends Point {
     private long id;
-    private double lat;
-    private double lon;
-
     private String name;
 
     private Node(long id, double lat, double lon) {
+        super(lon, lat);
         this.id = id;
-        this.lat = lat;
-        this.lon = lon;
     }
 
     public static Node of(long id, double lat, double lon) {
@@ -27,11 +25,11 @@ public class Node {
     }
 
     public double lat() {
-        return lat;
+        return getY();
     }
 
     public double lon() {
-        return lon;
+        return getX();
     }
 
     public String name() {
@@ -44,14 +42,14 @@ public class Node {
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
+        if (other == this) {
+            return true;
         }
-        if (other.getClass() != this.getClass()) {
+        if (!(other instanceof Node)) {
             return false;
         }
         Node otherNode = (Node) other;
-        return this.id == otherNode.id;
+        return this.id == otherNode.id();
     }
 
     @Override
@@ -61,6 +59,6 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.format("Node id: %d, lat: %.10f, lon: %.10f", id, lat, lon);
+        return String.format("Node id: %d, lat: %.10f, lon: %.10f", id(), lat(), lon());
     }
 }

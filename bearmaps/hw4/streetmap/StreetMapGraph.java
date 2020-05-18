@@ -128,7 +128,10 @@ public class StreetMapGraph implements AStarGraph<Long> {
      */
     @Override
     public boolean equals(Object o) {
-        if (o == null || o.getClass() != getClass()) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof StreetMapGraph)) {
             return false;
         }
 

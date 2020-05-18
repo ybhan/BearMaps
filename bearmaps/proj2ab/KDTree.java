@@ -15,16 +15,48 @@ public class KDTree implements PointSet {
         }
     }
 
+    public KDTree() {
+    }
+
     public KDTree(Collection<Point> points) {
         for (Point p : points) {
-            root = add(p, root, 'x');
+            add(p);
         }
     }
 
     public KDTree(Point[] points) {
         for (Point p : points) {
-            root = add(p, root, 'x');
+            add(p);
         }
+    }
+
+    @Override
+    public void add(Point p) {
+        root = add(p, root, 'x');
+    }
+
+    private Node add(Point p, Node node, char axis) {
+        if (node == null) {
+            return new Node(p);
+        }
+        if (axisDiff(p, node.point, axis) <= 0) {
+            node.leftChild = add(p, node.leftChild, switchAxis(axis));
+        } else {
+            node.rightChild = add(p, node.rightChild, switchAxis(axis));
+        }
+        return node;
+    }
+
+    private double axisDiff(Point p1, Point p2, char axis) {
+        if (axis == 'x') {
+            return p1.getX() - p2.getX();
+        } else {
+            return p1.getY() - p2.getY();
+        }
+    }
+
+    private char switchAxis(char axis) {
+        return (axis == 'x') ? 'y' : 'x';
     }
 
     @Override
@@ -59,29 +91,5 @@ public class KDTree implements PointSet {
             best = nearest(badSide, goal, best, switchAxis(axis));
         }
         return best;
-    }
-
-    private Node add(Point p, Node node, char axis) {
-        if (node == null) {
-            return new Node(p);
-        }
-        if (axisDiff(p, node.point, axis) <= 0) {
-            node.leftChild = add(p, node.leftChild, switchAxis(axis));
-        } else {
-            node.rightChild = add(p, node.rightChild, switchAxis(axis));
-        }
-        return node;
-    }
-
-    private double axisDiff(Point p1, Point p2, char axis) {
-        if (axis == 'x') {
-            return p1.getX() - p2.getX();
-        } else {
-            return p1.getY() - p2.getY();
-        }
-    }
-
-    private char switchAxis(char axis) {
-        return (axis == 'x') ? 'y' : 'x';
     }
 }

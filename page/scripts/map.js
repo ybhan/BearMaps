@@ -20,7 +20,7 @@ $(function() {
                                 '.status', '.settings', '.clear', '.action-icon'];
     const SAFE_WIDTH = 1120;
     const SAFE_HEIGHT = 800;
-    // psueod-lock
+    // pseudo-lock
     var getInProgress = false;
     var updatePending = false;
     var route_params = {};
@@ -185,7 +185,7 @@ $(function() {
                 if (data.directions_success) {
                     $directionsText.html(data.directions);
                 } else {
-                    $directionsText.html('No routing directions to display.');
+                    $directionsText.html('Double click on the map to set start and end points.');
                 }
             },
         });
@@ -388,7 +388,7 @@ $(function() {
             url: clear_route,
             success: function() {
                 dest.style.visibility = 'hidden';
-                $directionsText.html('No routing directions to display.');
+                $directionsText.html('Double click on the map to set start and end points.');
                 updateImg();
             },
         });

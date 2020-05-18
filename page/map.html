@@ -31,9 +31,9 @@
           <a class="info">
             <i class="action-icon fa fa-2x fa-question-circle" aria-hidden="true"></i>
             <div class="info-text">
-              You can also use arrow keys and -/= to zoom, or use the mouse drag and scroll wheel.
-              Double click to begin routing & double click again to end and show route.
-              <div class="info-subtext">( click this bubble to close )</div>
+              ←↑↓→: scroll &nbsp; -/=: zoom<br>
+              Double Click: navigation
+<!--              <div class="info-subtext">( click this bubble to close )</div>-->
             </div>
           </a>
           <a class="settings-container">
@@ -43,7 +43,7 @@
               <div class="settings-title"><strong>Options</strong></div>
               <form class="options" action="">
                 <label class="options-label">
-                  <input id="constrain-input" type="checkbox" name="constrain"><span>Constrain map dimensions (this may solve problems with zooming out)</span>
+                  <input id="constrain-input" type="checkbox" name="constrain"><span>Constrain map dimensions</span>
                 </label><br>
                 <div class="settings-title"><strong>Theme:</strong></div>
                 <label class="options-label">
@@ -69,7 +69,8 @@
       <div class="status">
           <div id="status-route" class="card">
             <div class="card-content">
-              Double-click again <br> for route endpoint ...
+              Double click again<br>
+              for route endpoint
             </div>
           </div>
           <div id="status-loading" class="card">
@@ -80,7 +81,7 @@
           </div>
           <div id="status-error" class="card">
             <div class="card-content">
-              Got server-side error! <br> See Java Console
+              Got server-side error!
             </div>
           </div>
         </div>
@@ -95,7 +96,7 @@
           <div class="directions-window">
             <i class="close-directions fa fa-2x fa-times-circle-o" aria-hidden="true"></i>
             <div class="directions-title"><strong>Route Navigation Directions</strong></div>
-            <div class="directions-text" id="directions-text">No routing directions to display.</div>
+            <div class="directions-text" id="directions-text">Double click on the map to set start and end points.</div>
           </div>
         </span>
       </div>

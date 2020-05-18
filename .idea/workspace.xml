@@ -6,34 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae45a58f-b1a3-46ec-bd2a-174a9e1cf762" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bearmaps/hw4/AStarGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/hw4/AStarGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/hw4/AStarSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/hw4/AStarSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/hw4/streetmap/StreetMapGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/hw4/streetmap/StreetMapGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/lab9/TestMyTrieSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2ab/ArrayHeapMinPQTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2ab/KDTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2ab/KDTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2ab/KDTreeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2ab/NaivePointSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/MapServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/MapServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/MapServerInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/MapServerInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/APIRouteHandlerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/APIRouteHandlerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/impl/ClearRouteAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/impl/ClearRouteAPIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/impl/RasterAPIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/server/handler/impl/RasterAPIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/proj2c/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/bearmaps/proj2c/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/test/TestDirections.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/test/TestRasterAPIHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/test/TestRouter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bearmaps/test/TestRouterTiny.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/page/map.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/page/marker.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/page/round_marker.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/page/scripts/map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/page/styles/map.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/simple/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/simple/test1234.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/simple/testTwelveImages.html" beforeDir="false" />
-    </list>
+    <list default="true" id="ae45a58f-b1a3-46ec-bd2a-174a9e1cf762" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +29,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -86,6 +59,7 @@
       <workItem from="1588534479994" duration="2035000" />
       <workItem from="1588536736445" duration="1041000" />
       <workItem from="1588538012688" duration="1083000" />
+      <workItem from="1588546157373" duration="12179000" />
     </task>
     <servers />
   </component>

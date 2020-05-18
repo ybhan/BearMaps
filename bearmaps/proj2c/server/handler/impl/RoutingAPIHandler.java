@@ -5,6 +5,7 @@ import bearmaps.proj2c.server.handler.APIRouteHandler;
 import spark.Request;
 import spark.Response;
 
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,7 @@ public class RoutingAPIHandler extends APIRouteHandler<Map<String, Double>, Map<
      */
     @Override
     protected Map<String, Object> processRequest(Map<String, Double> requestParams, Response response) {
-        List<Long> route = Router.shortestPath(
+        Deque<Long> route = Router.shortestPath(
                 SEMANTIC_STREET_GRAPH,
                 requestParams.get("start_lon"), requestParams.get("start_lat"),
                 requestParams.get("end_lon"), requestParams.get("end_lat"));

@@ -3,7 +3,7 @@ package bearmaps.proj2c.utils;
 import bearmaps.proj2c.AugmentedStreetMapGraph;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,5 +45,5 @@ public class Constants {
      * This is used to maintain a single List of route so that the same instance(object) is accessed
      * from everywhere in the code. Enum is a cleaner way to achieve such a singleton pattern.
      */
-    public static final List<Long> ROUTE_LIST = new LinkedList<>();
+    public static final List<Long> ROUTE_LIST = new ArrayList<>();
 }

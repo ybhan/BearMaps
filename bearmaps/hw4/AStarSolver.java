@@ -4,12 +4,11 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.ArrayDeque;
 
 
 public class AStarSolver<Vertex> {
-    private Deque<Vertex> solution;
+    private ArrayDeque<Vertex> solution;
 
     public AStarSolver(AStarGraph<Vertex> input, Vertex start, Vertex end, double timeout) {
         solution = new ArrayDeque<>();
@@ -59,7 +58,7 @@ public class AStarSolver<Vertex> {
         }
     }
 
-    public Deque<Vertex> solution() {
+    public ArrayDeque<Vertex> solution() {
         return solution;
     }
 

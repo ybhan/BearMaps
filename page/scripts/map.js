@@ -418,8 +418,17 @@ $(function() {
     });
 
     $('body').dblclick(function handler(event) {
-        if (route_params.start_lon && route_params.end_lon) { //finished routing, reset routing
+        if (route_params.start_lon && route_params.end_lon) {  // finished routing, reset routing
             route_params = {};
+            $.get({
+                async: true,
+                url: clear_route,
+                success: function() {
+                    dest.style.visibility = 'hidden';
+                    $directionsText.html('Double click on the map to set start and end points.');
+                    updateImg();
+                },
+            });
         }
         const offset = $body.offset();
         const viewbounds = get_view_bounds();

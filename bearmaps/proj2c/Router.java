@@ -24,7 +24,7 @@ public class Router {
      * @param destlat The latitude of the destination location.
      * @return A list of node id's in the order visited on the shortest path.
      */
-    public static Deque<Long> shortestPath(AugmentedStreetMapGraph g, double stlon, double stlat,
+    public static ArrayDeque<Long> shortestPath(AugmentedStreetMapGraph g, double stlon, double stlat,
                                            double destlon, double destlat) {
         long src = g.closest(stlon, stlat);
         long dest = g.closest(destlon, destlat);
@@ -57,7 +57,7 @@ public class Router {
 
         for (WeightedEdge<Long> we : g.neighbors(pre)) {
             if (we.to() == cur) {
-                nd.way = (we.getName().equals("")) ? NavigationDirection.UNKNOWN_ROAD : we.getName();
+                nd.way = (we.getName().isEmpty()) ? NavigationDirection.UNKNOWN_ROAD : we.getName();
                 nd.distance = we.weight();
                 break;
             }
@@ -75,7 +75,7 @@ public class Router {
         while (routeIter.hasNext()) {
             long next = routeIter.next();
 
-            WeightedEdge<Long> we = null;  // from pre to cur
+            WeightedEdge<Long> we = null;  // from cur to next
             for (WeightedEdge<Long> weightedEdge : g.neighbors(cur)) {
                 if (weightedEdge.to() == next) {
                     we = weightedEdge;
@@ -86,15 +86,15 @@ public class Router {
                 throw new IllegalArgumentException("Invalid route.");
             }
 
-            if ((we.getName().equals("") && !nd.way.equals(NavigationDirection.UNKNOWN_ROAD))
-                    || (!we.getName().equals("") && !we.getName().equals(nd.way))) {
+            if ((we.getName().isEmpty() && !nd.way.equals(NavigationDirection.UNKNOWN_ROAD))
+                    || (!we.getName().isEmpty() && !we.getName().equals(nd.way))) {
                 results.add(nd);
 
                 nd = new NavigationDirection();
                 nd.direction = NavigationDirection.getDirection(
                         NavigationDirection.bearing(g.lon(pre), g.lon(cur), g.lat(pre), g.lat(cur)),
                         NavigationDirection.bearing(g.lon(cur), g.lon(next), g.lat(cur), g.lat(next)));
-                nd.way = (we.getName().equals("")) ? NavigationDirection.UNKNOWN_ROAD : we.getName();
+                nd.way = (we.getName().isEmpty()) ? NavigationDirection.UNKNOWN_ROAD : we.getName();
                 nd.distance = we.weight();
             } else {
                 nd.distance += we.weight();

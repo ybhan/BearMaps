@@ -29,9 +29,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -62,6 +63,8 @@
       <workItem from="1588546157373" duration="12179000" />
       <workItem from="1588698679660" duration="3695000" />
       <workItem from="1588702958547" duration="1234000" />
+      <workItem from="1588705804145" duration="1591000" />
+      <workItem from="1588707977300" duration="3624000" />
     </task>
     <servers />
   </component>

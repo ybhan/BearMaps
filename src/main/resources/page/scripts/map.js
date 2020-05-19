@@ -2,7 +2,8 @@
   * Map project javascript file written for CS61B/CS61BL.
   * This is not an example of good javascript or programming practice.
   * Feel free to improve this front-end for your own personal pleasure.
-  * Authors: Alan Yao (Spring 2016), Colby Guan (Spring 2017), Alexander Hwang (Spring 2018), Eli Lipsitz (Spring 2019)
+  * Authors: Alan Yao (Spring 2016), Colby Guan (Spring 2017), Alexander Hwang (Spring 2018),
+  *          Eli Lipsitz (Spring 2019), Yuanbo Han
   * If using, please credit authors.
   **/
 
@@ -17,20 +18,20 @@ $(function() {
     const $warningsContainer = $('#status-warnings');
     const $directionsText = $('#directions-text');
     const themeableElements = ['body', '.actions', '.card', '.search', '.ui-autocomplete',
-                                '.status', '.settings', '.clear', '.action-icon'];
+        '.status', '.settings', '.clear', '.action-icon'];
     const SAFE_WIDTH = 1120;
     const SAFE_HEIGHT = 800;
     // pseudo-lock
-    var getInProgress = false;
-    var updatePending = false;
-    var route_params = {};
-    var map;
-    var dest;
-    var markers = [];
-    var host;
-    var ullon_bound, ullat_bound, lrlon_bound, lrlat_bound;
-    var img_w, img_h;
-    var constrain, theme;
+    let getInProgress = false;
+    let updatePending = false;
+    let route_params = {};
+    let map;
+    let dest;
+    let markers = [];
+    let host;
+    let ullon_bound, ullat_bound, lrlon_bound, lrlat_bound;
+    let img_w, img_h;
+    let constrain, theme;
 
     const base_move_delta = 64;
     const MAX_LEVEL = 7;
@@ -43,18 +44,19 @@ $(function() {
     const ROOT_LRLAT = 37.82280243352756;
     const ROOT_LRLON = -122.2119140625;
 
-    var w = $body.width();
-    var h = $body.height();
-    var depth = START_DEPTH;
-    var lat = START_LAT;
-    var lon = START_LON;
+    let w = $body.width();
+    let h = $body.height();
+    let depth = START_DEPTH;
+    let lat = START_LAT;
+    let lon = START_LON;
 
     /* Set server URIs */
     if (document.location.hostname !== 'localhost') {
-        host = 'http://' + document.location.host;
+        host = 'https://' + document.location.host;
     } else {
-        host = 'http://localhost:4567';
+        host = 'http://' + document.location.host;
     }
+
     const raster_server = host + '/raster';
     const route_server = host + '/route';
     const clear_route = host + '/clear_route';
@@ -75,7 +77,7 @@ $(function() {
     }
 
     function removeMarkers() {
-        for (var i = 0; i < markers.length; i++) {
+        for (let i = 0; i < markers.length; i++) {
             markers[i].element.remove();
         }
         markers = [];
@@ -89,7 +91,7 @@ $(function() {
 
         $loadingStatus.show();
         getInProgress = true;
-        var params = get_view_bounds();
+        const params = get_view_bounds();
         params.w = w;
         params.h = h;
         console.log(params);
@@ -104,7 +106,7 @@ $(function() {
                     $loadingStatus.hide();
                     map.src = 'data:image/png;base64,' + data.b64_encoded_image_data;
                     console.log('Updating map with image length: ' +
-                                data.b64_encoded_image_data.length);
+                        data.b64_encoded_image_data.length);
                     ullon_bound = data.raster_ul_lon;
                     ullat_bound = data.raster_ul_lat;
                     lrlon_bound = data.raster_lr_lon;
@@ -113,7 +115,7 @@ $(function() {
                     img_h = data.raster_height;
                     getInProgress = false;
 
-                    var warnings = [];
+                    const warnings = [];
                     if (data.depth !== depth) {
                         warnings.push("got depth " + data.depth + " but was expecting " + depth);
                     }
@@ -124,7 +126,7 @@ $(function() {
                         warnings.push("got much taller image than expected. requested height: " + params.h + ". got: " + img_h);
                     }
                     if (warnings.length > 0) {
-                        var ele = $('<div/>', {
+                        const ele = $('<div/>', {
                             class: 'card-content'
                         });
                         ele.html("Warnings:<br>" + warnings.join("<br>"));
@@ -153,17 +155,17 @@ $(function() {
     }
 
     function updateT() {
-        var londpp = get_londpp();
-        var latdpp = get_latdpp();
-        var computed = get_view_bounds();
-        var tx = (ullon_bound - computed.ullon) / londpp;
-        var ty = (ullat_bound - computed.ullat) / latdpp;
+        const londpp = get_londpp();
+        const latdpp = get_latdpp();
+        const computed = get_view_bounds();
+        const tx = (ullon_bound - computed.ullon) / londpp;
+        const ty = (ullat_bound - computed.ullat) / latdpp;
 
-        var newHash = "lat=" + lat + "&lon=" + lon + "&depth=" + depth;
+        const newHash = "lat=" + lat + "&lon=" + lon + "&depth=" + depth;
         history.replaceState(null, null, document.location.pathname + '#' + newHash);
 
         map.style.transform = 'translateX(' + tx + 'px) translateY(' + ty + 'px)';
-        for (var i = 0; i < markers.length; i++) {
+        for (let i = 0; i < markers.length; i++) {
             const marker = markers[i];
             const marker_tx = (marker.lon - computed.ullon) / londpp;
             const marker_ty = (marker.lat - computed.ullat) / latdpp;
@@ -240,9 +242,9 @@ $(function() {
 
     function handleHashParameters() {
         // https://stackoverflow.com/a/2880929/437550
-        var hash = window.location.hash.substring(1).split('&');
-        for (var i = 0; i < hash.length; i += 1) {
-            var temp = hash[i].split('=');
+        const hash = window.location.hash.substring(1).split('&');
+        for (let i = 0; i < hash.length; i++) {
+            const temp = hash[i].split('=');
 
             if (temp[0] === 'lat') {
                 lat = parseFloat(temp[1]);
@@ -258,9 +260,9 @@ $(function() {
     /* only ran once */
     function loadCookies() {
         const allcookies = document.cookie.replace(/ /g, '').split(';');
-        var foundConstrain = false;
-        var foundTheme = false;
-        for (var i = 0; i < allcookies.length; i++) {
+        let foundConstrain = false;
+        let foundTheme = false;
+        for (let i = 0; i < allcookies.length; i++) {
             const kv = allcookies[i].split('=');
             if (kv[0] === 'constrain') {
                 constrain = (kv[1] === 'true');
@@ -284,7 +286,7 @@ $(function() {
         const date = new Date();
         // Expire 7 days from now
         date.setTime(date.getTime() + 604800000);
-        document.cookie = 'expires='+date.toGMTString();
+        document.cookie = 'expires=' + date.toGMTString();
     }
 
     function setTheme() {
@@ -314,30 +316,30 @@ $(function() {
 
     /* Make search bar do autocomplete things */
     $('#tags').autocomplete({
-          source: search,
-          minLength: 2,
-          select: function (event, ui) {
-              $.get({
-                  async: true,
-                  url: search,
-                  dataType: 'json',
-                  data: { term: ui.item.value, full: true},
-                  success: function(data) {
-                      removeMarkers();
-                      for (var i = 0; i < data.length; i++) {
-                          console.log(data[i]);
-                          const ele = $('<img/>', {
-                              id: "marker_" + data[i].id,
-                              src: 'round_marker.gif',
-                              class: 'rmarker'
-                          });
-                          ele.appendTo($('#markers'));
-                          markers.push({lat: data[i].lat, lon: data[i].lon, element: ele});
-                      }
-                      updateT();
-                  },
-              });
-          }
+        source: search,
+        minLength: 2,
+        select: function(event, ui) {
+            $.get({
+                async: true,
+                url: search,
+                dataType: 'json',
+                data: { term: ui.item.value, full: true },
+                success: function(data) {
+                    removeMarkers();
+                    for (let i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                        const ele = $('<img/>', {
+                            id: "marker_" + data[i].id,
+                            src: '../round_marker.gif',
+                            class: 'rmarker'
+                        });
+                        ele.appendTo($('#markers'));
+                        markers.push({ lat: data[i].lat, lon: data[i].lon, element: ele });
+                    }
+                    updateT();
+                },
+            });
+        }
     });
     setTheme();
 
@@ -351,35 +353,35 @@ $(function() {
 
     /* Enables drag functionality */
     $body.on('mousedown', function(event) {
-      if (event.which !== 1) {
-          return; // ignore non-left clicks
-      }
-      var startX = event.pageX;
-      var startY = event.pageY;
-      var startLon = lon;
-      var startLat = lat;
+        if (event.which !== 1) {
+            return; // ignore non-left clicks
+        }
+        const startX = event.pageX;
+        const startY = event.pageY;
+        const startLon = lon;
+        const startLat = lat;
 
-      $body.on('mousemove', function(event) {
-        const dx = event.pageX - startX;
-        const dy = event.pageY - startY;
-        lon = startLon - (dx * get_londpp());
-        lat = startLat - (dy * get_latdpp());
-        updateT();
-      });
+        $body.on('mousemove', function(event) {
+            const dx = event.pageX - startX;
+            const dy = event.pageY - startY;
+            lon = startLon - (dx * get_londpp());
+            lat = startLat - (dy * get_latdpp());
+            updateT();
+        });
 
-      $body.on('mouseup', function(event) {
-        $body.off('mousemove');
-        $body.off('mouseup');
-        conditionalUpdate();
-      });
+        $body.on('mouseup', function(event) {
+            $body.off('mousemove');
+            $body.off('mouseup');
+            conditionalUpdate();
+        });
     });
 
     $('.zoomin').click(function() {
-       zoomIn();
+        zoomIn();
     });
 
     $('.zoomout').click(function() {
-       zoomOut();
+        zoomOut();
     });
 
     $('.clear').click(function() {
@@ -432,8 +434,8 @@ $(function() {
         }
         const offset = $body.offset();
         const viewbounds = get_view_bounds();
-        var click_lon = (event.pageX - offset.left) * get_londpp() + viewbounds.ullon;
-        var click_lat = (event.pageY - offset.top) * get_latdpp() + viewbounds.ullat;
+        const click_lon = (event.pageX - offset.left) * get_londpp() + viewbounds.ullon;
+        const click_lat = (event.pageY - offset.top) * get_latdpp() + viewbounds.ullat;
 
         if (route_params.start_lon) { // began routing already but not finished
             route_params.end_lon = click_lon;
@@ -450,7 +452,7 @@ $(function() {
     });
 
     /* Enables scroll wheel zoom */
-    $(window).bind('mousewheel DOMMouseScroll', function(event){
+    $(window).bind('mousewheel DOMMouseScroll', function(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
             zoomIn();
         } else {
@@ -487,7 +489,7 @@ $(function() {
 
     /* Keyboard navigation callbacks */
     document.onkeydown = function(e) {
-        var delta = base_move_delta;
+        const delta = base_move_delta;
         switch (e.keyCode) {
             case 37: //left
                 lon -= delta * get_londpp();
